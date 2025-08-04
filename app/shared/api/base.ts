@@ -7,10 +7,7 @@ export class ApiClient {
     this.baseUrl = baseUrl;
   }
 
-  private async request<T>(
-    endpoint: string,
-    options: RequestInit = {}
-  ): Promise<T> {
+  private async request<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
     const url = `${this.baseUrl}${endpoint}`;
     const config: RequestInit = {
       headers: {
@@ -33,11 +30,7 @@ export class ApiClient {
     return this.request<T>(endpoint, { ...options, method: 'GET' });
   }
 
-  public post<T>(
-    endpoint: string,
-    data?: unknown,
-    options?: RequestInit
-  ): Promise<T> {
+  public post<T>(endpoint: string, data?: unknown, options?: RequestInit): Promise<T> {
     return this.request<T>(endpoint, {
       ...options,
       method: 'POST',
@@ -45,11 +38,7 @@ export class ApiClient {
     });
   }
 
-  public put<T>(
-    endpoint: string,
-    data?: unknown,
-    options?: RequestInit
-  ): Promise<T> {
+  public put<T>(endpoint: string, data?: unknown, options?: RequestInit): Promise<T> {
     return this.request<T>(endpoint, {
       ...options,
       method: 'PUT',
