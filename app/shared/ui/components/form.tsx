@@ -24,20 +24,27 @@ export function FormField({ label, children, error, required }: FormFieldProps) 
 interface InputProps {
   value?: string;
   onChange?: (value: string) => void;
+  onBlur?: () => void;
   placeholder?: string;
   type?: 'text' | 'email' | 'password' | 'number';
   disabled?: boolean;
+  error?: string;
 }
 
-export function Input({ value, onChange, placeholder, type = 'text', disabled }: InputProps) {
+export function Input({ value, onChange, onBlur, placeholder, type = 'text', disabled, error }: InputProps) {
   return (
-    <TextInput
-      type={type}
-      value={value}
-      onChange={(e) => onChange?.(e.target.value)}
-      placeholder={placeholder}
-      disabled={disabled}
-    />
+    <div>
+      <TextInput
+        type={type}
+        value={value}
+        onChange={(e) => onChange?.(e.target.value)}
+        onBlur={onBlur}
+        placeholder={placeholder}
+        disabled={disabled}
+        color={error ? 'failure' : undefined}
+      />
+      {error && <div className="text-sm text-red-600 mt-1">{error}</div>}
+    </div>
   );
 }
 

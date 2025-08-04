@@ -8,10 +8,14 @@ interface CardProps {
 
 export function Card({ children, padding = 'md' }: CardProps) {
   const paddingClasses = {
-    sm: 'p-3',
-    md: 'p-6',
-    lg: 'p-8',
+    sm: 'p-3 sm:p-4',
+    md: 'p-4 sm:p-6',
+    lg: 'p-6 sm:p-8',
   };
 
-  return <FlowbiteCard className={paddingClasses[padding]}>{children}</FlowbiteCard>;
+  return (
+    <FlowbiteCard className={`${paddingClasses[padding]} max-w-full`}>
+      {children}
+    </FlowbiteCard>
+  );
 }
