@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { AuthService, type AuthResponse } from '../../api/services/auth-service';
 import { TokenStorage } from '../utils/token-storage';
+import { SessionManager } from '../utils/session-manager';
 
 interface User {
   id: string;
@@ -31,6 +32,7 @@ export const useAuthStore = create<AuthState>((set) => ({
     try {
       const response: AuthResponse = await AuthService.login({ email, password });
       TokenStorage.setTokens(response.tokens.accessToken, response.tokens.refreshToken);
+      SessionManager.scheduleTokenRefresh();
       set({ 
         user: response.user, 
         isAuthenticated: true, 
@@ -49,6 +51,7 @@ export const useAuthStore = create<AuthState>((set) => ({
     try {
       const response: AuthResponse = await AuthService.register({ email, password, name });
       TokenStorage.setTokens(response.tokens.accessToken, response.tokens.refreshToken);
+      SessionManager.scheduleTokenRefresh();
       set({ 
         user: response.user, 
         isAuthenticated: true, 
@@ -68,8 +71,7 @@ export const useAuthStore = create<AuthState>((set) => ({
     } catch (error) {
       console.error('Ошибка при выходе:', error);
     } finally {
-      TokenStorage.clearTokens();
-      set({ user: null, isAuthenticated: false, error: null });
+      SessionManager.logout();
     }
   },
 

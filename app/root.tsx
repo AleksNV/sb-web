@@ -1,5 +1,6 @@
 import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration } from 'react-router';
 import { Header } from './widgets/header';
+import { SessionProvider } from './shared/lib/providers/session-provider';
 
 import type { Route } from './+types/root';
 import './app.css';
@@ -23,11 +24,25 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              // On page load or when changing themes, best to add inline in 'head' to avoid FOUC
+              if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                  document.documentElement.classList.add('dark');
+              } else {
+                  document.documentElement.classList.remove('dark')
+              }
+            `,
+          }}
+        />
         <Meta />
         <Links />
       </head>
       <body>
-        {children}
+        <SessionProvider>
+          {children}
+        </SessionProvider>
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -39,7 +54,7 @@ export default function App() {
   return (
     <>
       <Header />
-      <main>
+      <main className="bg-gray-50 dark:bg-gray-900 min-h-screen">
         <Outlet />
       </main>
     </>

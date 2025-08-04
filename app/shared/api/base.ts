@@ -1,5 +1,6 @@
 import { env } from '../config/env';
 import { TokenStorage } from '../lib/utils/token-storage';
+import { SessionManager } from '../lib/utils/session-manager';
 
 export class ApiClient {
   private baseUrl: string;
@@ -30,6 +31,10 @@ export class ApiClient {
     const response = await fetch(url, config);
 
     if (!response.ok) {
+      // Обрабатываем ошибки авторизации
+      if (response.status === 401) {
+        SessionManager.handleAuthError({ status: 401 });
+      }
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 

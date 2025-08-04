@@ -24,4 +24,5 @@ export function formatDate(date: Date | string): string {
 }
 
 export { TokenStorage } from './token-storage';
+export { SessionManager } from './session-manager';
 export * from './validation-schemas';

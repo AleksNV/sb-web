@@ -12,7 +12,7 @@ export const ErrorMessage: React.FC<ErrorMessageProps> = ({
   className = '' 
 }) => {
   return (
-    <div className={`bg-red-50 border border-red-200 rounded-md p-4 ${className}`}>
+    <div className={`bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-md p-4 ${className}`}>
       <div className="flex">
         <div className="flex-shrink-0">
           <svg
@@ -29,8 +29,8 @@ export const ErrorMessage: React.FC<ErrorMessageProps> = ({
           </svg>
         </div>
         <div className="ml-3">
-          <h3 className="text-sm font-medium text-red-800">Ошибка</h3>
-          <div className="mt-2 text-sm text-red-700">
+          <h3 className="text-sm font-medium text-red-800 dark:text-red-200">Ошибка</h3>
+          <div className="mt-2 text-sm text-red-700 dark:text-red-300">
             <p>{error}</p>
           </div>
           {onRetry && (
@@ -38,7 +38,7 @@ export const ErrorMessage: React.FC<ErrorMessageProps> = ({
               <button
                 type="button"
                 onClick={onRetry}
-                className="rounded-md bg-red-50 px-2 py-1.5 text-sm font-medium text-red-800 hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2 focus:ring-offset-red-50"
+                className="rounded-md bg-red-50 dark:bg-red-900/30 px-2 py-1.5 text-sm font-medium text-red-800 dark:text-red-200 hover:bg-red-100 dark:hover:bg-red-900/50 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2 focus:ring-offset-red-50 dark:focus:ring-offset-red-900"
               >
                 Попробовать снова
               </button>

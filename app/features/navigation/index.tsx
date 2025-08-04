@@ -21,8 +21,8 @@ export function Navigation() {
           <span
             className={`block px-3 py-2 rounded-md text-sm font-medium transition-colors ${
               location.pathname === item.path
-                ? 'text-blue-500 bg-blue-50'
-                : 'text-gray-600 hover:text-blue-500 hover:bg-gray-50'
+                ? 'text-blue-500 bg-blue-50 dark:bg-blue-900/20'
+                : 'text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800'
             }`}
           >
             {item.label}

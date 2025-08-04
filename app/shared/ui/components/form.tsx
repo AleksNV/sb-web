@@ -11,12 +11,12 @@ interface FormFieldProps {
 export function FormField({ label, children, error, required }: FormFieldProps) {
   return (
     <div className="mb-4">
-      <Label className="block text-sm font-medium text-gray-700 mb-2">
+      <Label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
         {label}
         {required && <span className="text-red-500 ml-1">*</span>}
       </Label>
       {children}
-      {error && <div className="text-sm text-red-600 mt-1">{error}</div>}
+      {error && <div className="text-sm text-red-600 dark:text-red-400 mt-1">{error}</div>}
     </div>
   );
 }
@@ -43,7 +43,7 @@ export function Input({ value, onChange, onBlur, placeholder, type = 'text', dis
         disabled={disabled}
         color={error ? 'failure' : undefined}
       />
-      {error && <div className="text-sm text-red-600 mt-1">{error}</div>}
+      {error && <div className="text-sm text-red-600 dark:text-red-400 mt-1">{error}</div>}
     </div>
   );
 }

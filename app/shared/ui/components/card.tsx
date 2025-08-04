@@ -14,7 +14,7 @@ export function Card({ children, padding = 'md' }: CardProps) {
   };
 
   return (
-    <FlowbiteCard className={`${paddingClasses[padding]} max-w-full`}>
+    <FlowbiteCard className={`${paddingClasses[padding]} max-w-full bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700`}>
       {children}
     </FlowbiteCard>
   );
