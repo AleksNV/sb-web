@@ -1,4 +1,5 @@
 import { env } from '../config/env';
+import { TokenStorage } from '../lib/utils/token-storage';
 
 export class ApiClient {
   private baseUrl: string;
@@ -9,11 +10,20 @@ export class ApiClient {
 
   private async request<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
     const url = `${this.baseUrl}${endpoint}`;
+    
+    // Добавляем токен авторизации
+    const headers = new Headers({
+      'Content-Type': 'application/json',
+      ...options.headers,
+    });
+
+    const accessToken = TokenStorage.getAccessToken();
+    if (accessToken) {
+      headers.set('Authorization', `Bearer ${accessToken}`);
+    }
+
     const config: RequestInit = {
-      headers: {
-        'Content-Type': 'application/json',
-        ...options.headers,
-      },
+      headers,
       ...options,
     };
 
