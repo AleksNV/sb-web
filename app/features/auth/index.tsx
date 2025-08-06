@@ -15,7 +15,7 @@ export function AuthStatus() {
   return (
     <div className="p-4 bg-green-50 rounded-md" data-testid="auth-status">
       <h3 className="text-lg font-semibold mb-2">Welcome, {user?.name}!</h3>
-      <Button size="sm" onClick={logout}>
+      <Button size="sm" color="primary" onClick={logout}>
         Logout
       </Button>
     </div>

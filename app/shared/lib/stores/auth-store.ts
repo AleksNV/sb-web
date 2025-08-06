@@ -1,7 +1,6 @@
 import { create } from 'zustand';
-import { AuthService, type AuthResponse } from '../../api/services/auth-service';
-import { TokenStorage } from '../utils/token-storage';
-import { SessionManager } from '../utils/session-manager';
+import { AuthService, type AuthResponse } from '~/shared/api/services';
+import { TokenStorage, SessionManager } from '~/shared/lib/utils';
 
 interface User {
   id: string;

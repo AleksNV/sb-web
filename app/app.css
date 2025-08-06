@@ -5,13 +5,13 @@
     "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
     "Noto Color Emoji";
 }
+@custom-variant dark (&:where(.dark, .dark *));
 
 html,
 body {
   @apply bg-white dark:bg-gray-950;
 }
 
-/* Принудительно применяем темную тему */
 html.dark {
   color-scheme: dark;
 }
